@@ -1,30 +1,21 @@
-import React from 'react';
-import { ChatEngine } from 'react-chat-engine';
+import {ChatEngine} from 'react-chat-engine';
+import './App.css';
+import LoginForm from './components/LoginForm';
 
-function App() {
-	return (
-		<ChatEngine
-			projectID='17d4412a-f5b8-485c-9bd8-8ed9bcfaa5b4'
-			userName='user1'
-			userSecret='1234'
-			// Render Custom Components
-			height='100vh'
-			hideUI={false}
-			renderChatList={(chatAppState) => {}}
-			renderChatCard={(chat, index) => {}}
-			renderNewChatForm={(creds) => {}}
-			renderChatFeed={(chatAppState) => {}}
-			renderChatHeader={(chat) => {}}
-			renderMessageBubble={(creds, chat, lastMessage, message, nextMessage) => {}}
-			renderIsTyping={(people) => {}}
-			renderNewMessageForm={(creds, chatId) => {}}
-			renderChatSettings={(chatAppState) => {}}
-			renderChatSettingsTop={(creds, chat) => {}}
-			renderPeopleSettings={(creds, chat) => {}}
-			renderPhotosSettings={(creds, chat) => {}}
-			renderOptionsSettings={(creds, chat) => {}}
-		/>
-	);
+// import React from 'react'
+
+const projectID = '17d4412a-f5b8-485c-9bd8-8ed9bcfaa5b4';
+
+const App = () => {
+    if (!localStorage.getItem('username')) return <LoginForm />;
+    return (
+        <ChatEngine
+        height = "100vh"
+        projectID={projectID}
+        userName={localStorage.getItem('username')}
+      userSecret={localStorage.getItem('password')}
+       />
+    )
 }
 
 export default App;
